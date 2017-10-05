@@ -10,7 +10,7 @@ import codecs
 import fnmatch
 import shutil
 
-DATA_PATH = "../data"
+DATA_PATH = "./data"
 
 # path to text file in the format:
 # word1 0.123 0.123 ... 0.123
@@ -41,9 +41,9 @@ WORD_VOCAB_FILE = os.path.join(DATA_PATH, "vocabulary")
 #PUNCTUATION_VOCABULARY = [SPACE, ",COMMA", ".PERIOD", "?QUESTIONMARK", "!EXCLAMATIONMARK", ":COLON", ";SEMICOLON", "-DASH"]
 #PUNCTUATION_MAPPING = {}
 
-# Comma, period & question mark only:
- PUNCTUATION_VOCABULARY = {SPACE, ",COMMA", ".PERIOD", "?QUESTIONMARK"}
- PUNCTUATION_MAPPING = {"!EXCLAMATIONMARK": ".PERIOD", ":COLON": ",COMMA", ";SEMICOLON": ".PERIOD", "...ELLIPSIS": ",COMMA"}
+# Comma, period, question mark, and ellipsis only:
+PUNCTUATION_VOCABULARY = {SPACE, ",COMMA", ".PERIOD", "?QUESTIONMARK", "...ELLIPSIS"}
+PUNCTUATION_MAPPING = {"!EXCLAMATIONMARK": ".PERIOD", ":COLON": ",COMMA", ";SEMICOLON": ".PERIOD"}
 
 EOS_TOKENS = {".PERIOD", "?QUESTIONMARK", "!EXCLAMATIONMARK"}
 CRAP_TOKENS = {"<doc>", "<doc.>"} # punctuations that are not included in vocabulary nor mapping, must be added to CRAP_TOKENS
@@ -196,7 +196,8 @@ def write_processed_dataset(input_files, output_file):
 
                         last_eos_idx = 0 # sequence always starts with a new sentence
 
-    print "%.2f%% UNK-s in %s" % (num_unks / num_total * 100, output_file)
+    print(num_unks,num_total)
+    print "%.5f%% UNK-s in %s" % ((num_unks * 100) / num_total, output_file)
 
     dump(data, output_file)
 
