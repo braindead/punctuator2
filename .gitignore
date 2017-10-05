@@ -1,3 +1,13 @@
+# Model files
+*.pcl
+
+# Test file
+test_file.txt
+
+# Data folders
+data/
+training_data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
