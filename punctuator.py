@@ -4,7 +4,7 @@ from __future__ import division
 import re
 
 import models
-import data
+import punctuator_data as data
 
 import theano
 import sys
