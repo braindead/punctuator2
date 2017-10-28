@@ -21,10 +21,10 @@ class Punctuator():
 
         x = T.imatrix('x')
         
-        print "Loading model parameters..."
+        #print "Loading model parameters..."
         net, _ = models.load(model_file, 1, x)
 
-        print "Building model..."
+        #print "Building model..."
         self.predict = theano.function(
             inputs=[x],
             outputs=net.y

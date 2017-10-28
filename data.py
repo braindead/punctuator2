@@ -5,7 +5,7 @@ import random
 import os
 import sys
 import operator
-import cPickle
+import _pickle as cPickle
 import codecs
 import fnmatch
 import shutil
@@ -77,7 +77,7 @@ def write_vocabulary(vocabulary, file_name):
     if UNK not in vocabulary:
         vocabulary.append(UNK)
 
-    print "Vocabulary size: %d" % len(vocabulary)
+    #print "Vocabulary size: %d" % len(vocabulary)
 
     with codecs.open(file_name, 'w', 'utf-8') as f:
         f.write("\n".join(vocabulary))
@@ -196,8 +196,8 @@ def write_processed_dataset(input_files, output_file):
 
                         last_eos_idx = 0 # sequence always starts with a new sentence
 
-    print(num_unks,num_total)
-    print "%.5f%% UNK-s in %s" % ((num_unks * 100) / num_total, output_file)
+    #print(num_unks,num_total)
+    #print "%.5f%% UNK-s in %s" % ((num_unks * 100) / num_total, output_file)
 
     dump(data, output_file)
 
