@@ -45,7 +45,7 @@ class Punctuator():
     def clean(self,text):
         """Remove spacing before apostrophes"""
 
-        subbed = re.sub("(\,|\.+|\?|\!)? '(?!cause)","'",text)
+        subbed = re.sub(" '(?!cause)","'",text)
         # make sure file ends with EOS token
         if subbed[-1] not in [".","?","!"]:
             subbed = ".".join([subbed,""])
