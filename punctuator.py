@@ -42,22 +42,10 @@ class Punctuator():
         self.reverse_word_vocabulary = {v:k for k,v in self.word_vocabulary.items()}
         self.reverse_punctuation_vocabulary = {v:k for k,v in self.punctuation_vocabulary.items()}
 
-    def capitalizer(self,match):
-        """Return a capitalized form of a regex match"""
-        capped = match.group(1).upper()
-        
-        return capped
-
     def clean(self,text):
-        """Remove spacing before apostrophes and add basic capitalizations"""
+        """Remove spacing before apostrophes"""
 
-        subbed = re.sub("(\,|\.+|\?|\!)? '","'",text)
-        # capitalize "I"
-        subbed = re.sub(" i(\W)"," I\\1",subbed)
-        # capitalize first letter of a sentence
-        subbed = re.sub("(?<!\.)([\.\?\!] \w)",self.capitalizer,subbed).strip()
-        # capitalize first letter of file
-        subbed = re.sub("^(\w)",self.capitalizer,subbed)
+        subbed = re.sub(" '(?!cause)","'",text)
         # make sure file ends with EOS token
         if subbed[-1] not in [".","?","!"]:
             subbed = ".".join([subbed,""])
